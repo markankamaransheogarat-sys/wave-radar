@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wave-radar"
+version = "0.1.0"
+description = "Semi-automated Drips Stellar Wave radar: detects online maintainers in real time, finds 200-pt zero-app issues, generates tailored pitches, and tracks 15/15 slots"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "httpx>=0.27.0,<1.0.0",
+    "aiohttp>=3.10.0,<4.0.0",
+    "python-dotenv>=1.0.1,<2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0,<10.0.0",
+    "pytest-asyncio>=0.24.0,<2.0.0",
+]
+
+[project.scripts]
+wave-radar = "wave_radar.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
